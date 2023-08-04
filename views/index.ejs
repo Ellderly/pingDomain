@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Domain</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+<h1>Проверка доменов</h1>
+<form action="/check" method="POST" class="mb-3">
+    <input type="text" name="name" placeholder="Введите домен" class="form-control">
+    <button type="submit" class="btn btn-primary mt-2">Проверить</button>
+</form>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Домен</th>
+        <th>Статус</th>
+        <th>Ошибка</th>
+        <th>Логи</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for(let i = 0; i < domains.length; i++) {
+        let domainName = domains[i].name.replace(/^https?:\/\//, '');
+    %>
+        <tr>
+            <td><%= domains[i].display_name %></td>
+            <td><%= domains[i].status %></td>
+            <td><%= domains[i].error %></td>
+            <td><a href="/domain/<%= domains[i].id %>/history" class="btn btn-info">Логи</a></td>
+            <td>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="name" value="<%= domains[i].name %>">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+</body>
+</html>

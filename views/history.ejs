@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Domain</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+<h1>История домена</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Статус</th>
+        <th>Время</th>
+        <th>Продолжительность простоя (сек)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for(let i = 0; i < history.length; i++) { %>
+        <tr>
+            <td><%= history[i].status %></td>
+            <td><%= history[i].timestamp %></td>
+            <td><%= history[i].downtime %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+</body>
+
+</html>
